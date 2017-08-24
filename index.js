@@ -1,11 +1,17 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const nameRoutes = require('./greet');
+const nameRoute = nameRoutes();
 
 // const nameRoutes = require('./greetings');
-
 var app = express();
+
+//parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(express.static('public'));
+// parse application/json
+ app.use(bodyParser.json());
 
 app.engine('hbs', exphbs({
     defaultLayout: 'main',
@@ -14,11 +20,16 @@ app.engine('hbs', exphbs({
 
 app.set('view engine', 'hbs');
 
+
+
+
 // create a route
 app.get('/', function(req, res) {
-    res.render("greeting");
+    res.redirect("/greet");
 });
 
+app.post('/greet', nameRoute.greetNames)
+app.get('/greet', nameRoute.greetNames)
 // app.get('/greetings', nameRoutes.index);
 // app.get('/greetings/greet', nameRoutes.submit);
 // app.post('/greetings/greet', nameRoutes.submit);

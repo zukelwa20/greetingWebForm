@@ -1,6 +1,15 @@
+<form action="greet" method="post">
+    <input type="text" name="name" placeholder="Type any name here" value=""></input>
+    <input type="submit" name="" value="Greet Me"></input>
 
+    <input type="radio" name="Language" value="English">
+    <label>English</label>
+    <input type="radio" name="Language" value="IsiXhosa">
+    <label>IsiXhosa</label>
 
-<form>
-      <input type="text" name="" placeholder="Type any name here"></input>
-    <input type="submit" name="" value="Greet"></input>
+    <input type="radio" name="Language" value="Afrikaans">
+    <label>Afrikaans</label>
+
+{{languageGreet}}
+    <p>{{name}}</p>
 </form>
