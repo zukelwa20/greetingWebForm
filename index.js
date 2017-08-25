@@ -7,9 +7,9 @@ const nameRoute = nameRoutes();
 // const nameRoutes = require('./greetings');
 var app = express();
 
+app.use(express.static('public'));
 //parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(express.static('public'));
 // parse application/json
  app.use(bodyParser.json());
 
@@ -21,8 +21,6 @@ app.engine('hbs', exphbs({
 app.set('view engine', 'hbs');
 
 
-
-
 // create a route
 app.get('/', function(req, res) {
     res.redirect("/greet");
@@ -30,6 +28,7 @@ app.get('/', function(req, res) {
 
 app.post('/greet', nameRoute.greetNames)
 app.get('/greet', nameRoute.greetNames)
+
 // app.get('/greetings', nameRoutes.index);
 // app.get('/greetings/greet', nameRoutes.submit);
 // app.post('/greetings/greet', nameRoutes.submit);

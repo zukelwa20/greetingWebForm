@@ -1,4 +1,7 @@
-/*<form action="/product_name" method="POST">
-    <label>Product name: <input type="text" name="product_name" ></label>
-    <input type="submit">
-</form>*/
+h1 {
+text-align: center;
+}
+body {
+  background-color: red;
+  text-align: center;
+  }
