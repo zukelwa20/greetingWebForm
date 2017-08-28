@@ -6,7 +6,7 @@ module.exports = function(){
 var languageGreet = "";
 
 if (Language === "English") {
-  languageGreet = 'helo, ' + name;
+  languageGreet = 'Hello, ' + name;
 }
 else if(Language === "IsiXhosa"){
   languageGreet = 'Molo, ' + name;
