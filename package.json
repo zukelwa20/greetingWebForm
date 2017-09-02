@@ -6,7 +6,8 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^4.11.9"
   },
   "devDependencies": {},
   "scripts": {
@@ -22,5 +23,6 @@
   "bugs": {
     "url": "https://github.com/zukelwa20/greetingWebForm/issues"
   },
-  "homepage": "https://github.com/zukelwa20/greetingWebForm#readme"
+  "homepage": "https://github.com/zukelwa20/greetingWebForm#readme",
+  "keywords": []
 }

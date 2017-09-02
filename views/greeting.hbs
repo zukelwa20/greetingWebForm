@@ -1,17 +1,35 @@
 
-
-<form action="greet" method="post">
-    <input type="text" name="name" placeholder="Type any name here" value=""></input>
+<head>
+  <link rel="stylesheet" href="/css/greeting.css">
+</head>
+<form action="/greet" method="post">
+    <input type="text" name="name" placeholder="Type any name here" value="" required=""></input>
     <input type="submit" name="" value="Greet Me"></input><br><br>
 
-    <input type="radio" name="Language" value="English">
+    <input type="radio" name="Language" value="Hello, " required="">
     <label>English</label>
-    <input type="radio" name="Language" value="IsiXhosa">
+    <input type="radio" name="Language" value="Molo, " required="">
     <label>IsiXhosa</label>
+    <input type="radio" name="Language" value="More, " required="">
+    <label>Afrikaans</label><br><br>
 
-    <input type="radio" name="Language" value="Afrikaans">
-    <label>Afrikaans</label>
+<a href="/greet/greeted">Greeted names</a>
 
-{{languageGreet}}
-    <p>{{name}}</p>
+    <h1>
+      {{languageGreet}}
+    </h1>
+
+
+
+<!-- /*do this in a different page*/ -->
+    <ul>
+    {{#greets}}
+    <li>{{this.name}}</li>
+    {{/greets}}
+    </ul>
+<!-- {{languageGreet}}
+    <p>{{name}}</p> -->
+    <!-- {{#each names}}
+    <li>{{this.name}}</li>
+    {{/each}} -->
 </form>

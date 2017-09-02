@@ -1,9 +1,14 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const nameRoutes = require('./greet');
-const nameRoute = nameRoutes();
+const model = require("./models");
+const models = model("mongodb://localhost/greeted");
 
+const nameRoutes = require('./greet');
+const nameRoute = nameRoutes(models);
+// const App = require("./models");
+//
+// const apps = App();
 // const nameRoutes = require('./greetings');
 var app = express();
 
@@ -19,15 +24,18 @@ app.engine('hbs', exphbs({
 }));
 
 app.set('view engine', 'hbs');
-
-
 // create a route
 app.get('/', function(req, res) {
     res.redirect("/greet");
 });
 
-app.post('/greet', nameRoute.greetNames)
+// app.get('/', function(req, res){
+//   res.send("/greeted");
+// })
+
+app.get('/greet/greeted', nameRoute.showForm)
 app.get('/greet', nameRoute.greetNames)
+app.post('/greet', nameRoute.greetNames)
 
 // app.get('/greetings', nameRoutes.index);
 // app.get('/greetings/greet', nameRoutes.submit);
