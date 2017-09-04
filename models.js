@@ -6,7 +6,8 @@ module.exports = function(mongoUrl) {
 
 
     var greetedNames = mongoose.model('greetedNames', {
-        name: String
+        name: String,
+        counter: Number
     });
 
 

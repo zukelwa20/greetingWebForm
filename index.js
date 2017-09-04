@@ -6,6 +6,10 @@ const models = model("mongodb://localhost/greeted");
 
 const nameRoutes = require('./greet');
 const nameRoute = nameRoutes(models);
+
+// const resetFun = require('./greet');
+// const resetName = resetFun(models);
+
 // const App = require("./models");
 //
 // const apps = App();
@@ -26,15 +30,16 @@ app.engine('hbs', exphbs({
 app.set('view engine', 'hbs');
 // create a route
 app.get('/', function(req, res) {
-    res.redirect("/greet");
+    res.render("greeting");
 });
 
 // app.get('/', function(req, res){
 //   res.send("/greeted");
 // })
 
-app.get('/greet/greeted', nameRoute.showForm)
-app.get('/greet', nameRoute.greetNames)
+ app.get('/greet/greeted', nameRoute.allGreeted)
+ // app.get('/reset', resetName.allGreeted)
+app.get('/greet', nameRoute.showForm)
 app.post('/greet', nameRoute.greetNames)
 
 // app.get('/greetings', nameRoutes.index);
