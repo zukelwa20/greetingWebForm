@@ -116,22 +116,23 @@ module.exports = function(models) {
         });
 
     };
-// var resetFun = function(req, res){
-// models.greeNames.remove({}, function(err, result){
-//   if(err){
-//     throw (err)
-//   }
-//   else{
-//     return res.render('/greeted')
-//   }
-// })
-//   }
+var resetFun = function(req, res){
+ models.greetedNames.remove({}, function(err, result){
+  if(err){
+     throw (err)
+  }
+  else{
+    res.render('/greeted')
+    return result
+   }
+ })
+   }
 
     return {
         showForm,
         greetNames,
         allGreeted,
-        // resetFun
+         resetFun
     };
 }
 
