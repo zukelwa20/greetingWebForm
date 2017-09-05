@@ -38,7 +38,7 @@ app.get('/', function(req, res) {
 // })
 
  app.get('/greet/greeted', nameRoute.allGreeted)
- // app.get('/reset', resetName.allGreeted)
+ app.get('/reset', resetName.allGreeted)
 app.get('/greet', nameRoute.showForm)
 app.post('/greet', nameRoute.greetNames)
 

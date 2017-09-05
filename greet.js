@@ -27,12 +27,13 @@ module.exports = function(models) {
                         return (err)
                     } else {
                         // fn(null, {
-                            result
+                            result.counter++
                         // });
                     }
 
                 });
             }
+
         });
     }
 
@@ -41,7 +42,7 @@ module.exports = function(models) {
         if (err) {
 
         }else {
-          res.render('greeting', {result,
+          res.render('greeting', {
             languageGreet: msg,
             counter: result+=1
           })
@@ -115,7 +116,7 @@ module.exports = function(models) {
         });
 
     };
-// var resetFun = function(req, res, next){
+// var resetFun = function(req, res){
 // models.greeNames.remove({}, function(err, result){
 //   if(err){
 //     throw (err)
