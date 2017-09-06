@@ -10,47 +10,39 @@ module.exports = function(models) {
         models.greetedNames.findOne({
             name: name
 
-        }, function(err, resul) {
-            //console.log(resul);
+        }, function(err, greetedPerson) {
+            //console.log greetedPerson);
             if (err) {
                 return next(err)
-            } else if (resul) {
-                fn(null, {
-                    resul
-                });
+            } else if  (greetedPerson) {
+
+              greetedPerson.counter += 1;
+              greetedPerson.save(fn);
+
             } else {
                 models.greetedNames.create({
                     name: name,
-                    counter: 0
-                }, function(err, result) {
-                    if (err) {
-                        return (err)
-                    } else {
-                        // fn(null, {
-                        result.counter++
-                            // });
-                    }
-
-                });
+                    counter: 1
+                }, fn);
             }
 
         });
     }
 
     var counting = function(msg, res) {
-        models.greetedNames.count({}, function(err, result) {
+        models.greetedNames.count({}, function(err, latestCounter) {
             if (err) {
 
             } else {
                 res.render('greeting', {
                     languageGreet: msg,
-                    counter: result += 1
+                    counter: latestCounter
                 })
             }
         })
 
     };
-    // you can use this on a different route to show all the names
+    //  using "allGreeted" on different route to show all the names
     var allGreeted = function(name, res) {
         models.greetedNames.find({}, function(err, greets) {
             if (err) {
@@ -68,10 +60,10 @@ module.exports = function(models) {
 
 
     // takes in a name and a Language and compiles a greeting
-    function compileGreeting(name, lang, fn) {
-        fn(null, {
-            msg: lang + name
-        });
+    function compileGreeting(name, lang) {
+        //fn(null, {
+        return lang + name
+        //});
     }
 
     // console.log(allGreeted());
@@ -83,19 +75,24 @@ module.exports = function(models) {
             if (err) {
                 return next(err)
             } else {
-                return result;
+                //return result;
+
+                // calling the compiler function, it renders the view
+                var msg = compileGreeting(name, Language);
+                counting(msg, res);
+
+                // , function(err, result) {
+                //     var msge = result.msg;
+                //     if (err) {
+                //         console.log(err);
+                //     } else {
+                //     }
+                // });
+
             }
         });
 
-        // calling the compiler function, it renders the view
-        compileGreeting(name, Language, function(err, result) {
-            var msge = result.msg;
-            if (err) {
-                console.log(err);
-            } else {
-                counting(msge, res);
-            }
-        });
+
 
     };
     var resetFun = function(req, res) {
@@ -114,7 +111,7 @@ module.exports = function(models) {
         greetNames,
         allGreeted,
         resetFun
-        // takeName
+
     };
 }
 

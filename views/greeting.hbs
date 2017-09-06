@@ -1,4 +1,3 @@
-
 <head>
   <link rel="stylesheet" href="/css/greeting.css">
 </head>
@@ -21,18 +20,13 @@
     <h2>{{counter}}</h2>
 
 
-<!-- /*do this in a different page*/ -->
+<!-- /*i can do this to display names in a different page*/ -->
     <ul>
     {{#greets}}
-    <a href="/greet/greeted">{{greets.name}}</a>
     <li>{{this.name}}</li>
     {{/greets}}
     </ul>
-<!-- {{languageGreet}}
-    <p>{{name}}</p> -->
-    <!-- {{#each names}}
-    <li>{{this.name}}</li>
-    {{/each}} -->
+
 </form>
 <a href="/reset"><button  value="Reset">Reset</button>
 </a>
