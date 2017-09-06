@@ -39,7 +39,8 @@ app.get('/', function(req, res) {
 
  app.get('/greet/greeted', nameRoute.allGreeted)
 app.get('/greet', nameRoute.showForm)
-app.get('/reset', resetName.allGreeted )
+app.get('/reset', resetName.resetFun )
+// app.post('/reset', resetName.resetFun )
 app.post('/greet', nameRoute.greetNames)
 
  // app.get('/greetings', nameRoutes.index);

@@ -1,6 +1,6 @@
 module.exports = function(models) {
     const showForm = function(req, res, next) {
-      res.redirect('/')
+        res.redirect('/')
     }
 
     // takes in a name, goes to database and looks for the name,
@@ -21,14 +21,14 @@ module.exports = function(models) {
             } else {
                 models.greetedNames.create({
                     name: name,
-                     counter : 0
+                    counter: 0
                 }, function(err, result) {
                     if (err) {
                         return (err)
                     } else {
                         // fn(null, {
-                            result.counter++
-                        // });
+                        result.counter++
+                            // });
                     }
 
                 });
@@ -37,52 +37,34 @@ module.exports = function(models) {
         });
     }
 
-    var counting = function (msg, res) {
-      models.greetedNames.count({}, function (err, result) {
-        if (err) {
+    var counting = function(msg, res) {
+        models.greetedNames.count({}, function(err, result) {
+            if (err) {
 
-        }else {
-          res.render('greeting', {
-            languageGreet: msg,
-            counter: result+=1
-          })
-        }
-      })
+            } else {
+                res.render('greeting', {
+                    languageGreet: msg,
+                    counter: result += 1
+                })
+            }
+        })
 
     };
-    // // var counter = 1;
-    // var counting = function(msg, res) {
-    //   models.greetedNames.count({}, function(err, result) {
-    //     if (err) {
-    //       console.log(err);
-    //     } else   {
-    //       res.render('greeting', {
-    //         languageGreet: msg,
-    //         counter: result+=1
-    //       });
-    //     // } else {
-    //     //   // res.render('greeting', {
-    //     //   //   languageGreet: msg,
-    //     //   //   counter: result+=1
-    //     //   // });
-    //     // }
-    //   })
-    // };
-
     // you can use this on a different route to show all the names
     var allGreeted = function(name, res) {
         models.greetedNames.find({}, function(err, greets) {
             if (err) {
                 console.log(err);
             } else if (greets) {
-                res.render('greeted', {greets})
-             }
-              else {
+                res.render('greeted', {
+                    greets
+                })
+            } else {
                 console.log(result);
-                  return result
-                }
-            })
-        };
+                return result
+            }
+        })
+    };
 
 
     // takes in a name and a Language and compiles a greeting
@@ -111,28 +93,28 @@ module.exports = function(models) {
             if (err) {
                 console.log(err);
             } else {
-              counting(msge, res);
+                counting(msge, res);
             }
         });
 
     };
-var resetFun = function(req, res){
- models.greetedNames.remove({}, function(err, result){
-  if(err){
-     throw (err)
-  }
-  else{
-    res.render('/greeted')
-    return result
-   }
- })
-   }
+    var resetFun = function(req, res) {
+        models.greetedNames.remove({}, function(err, result) {
+            if (err) {
+                throw (err)
+            } else {
+                // res.redirect('/greeted')
+                return result
+            }
+        })
+    }
 
     return {
         showForm,
         greetNames,
         allGreeted,
-         resetFun
+        resetFun
+        // takeName
     };
 }
 
@@ -149,6 +131,25 @@ var resetFun = function(req, res){
 
 
 
+
+// // var counter = 1;
+// var counting = function(msg, res) {
+//   models.greetedNames.count({}, function(err, result) {
+//     if (err) {
+//       console.log(err);
+//     } else   {
+//       res.render('greeting', {
+//         languageGreet: msg,
+//         counter: result+=1
+//       });
+//     // } else {
+//     //   // res.render('greeting', {
+//     //   //   languageGreet: msg,
+//     //   //   counter: result+=1
+//     //   // });
+//     // }
+//   })
+// };
 
 
 
