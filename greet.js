@@ -5,7 +5,7 @@ module.exports = function(models) {
 
     // takes in a name, goes to database and looks for the name,
     // if not found create it than return it, if found just return it
-    function takeName(name, fn) {
+    function takesName(name, fn) {
 
         models.greetedNames.findOne({
             name: name
@@ -14,10 +14,10 @@ module.exports = function(models) {
             //console.log greetedPerson);
             if (err) {
                 return next(err)
-            } else if  (greetedPerson) {
+            } else if (greetedPerson) {
+                greetedPerson.counter += 1;
+                greetedPerson.save(fn);
 
-              greetedPerson.counter += 1;
-              greetedPerson.save(fn);
 
             } else {
                 models.greetedNames.create({
@@ -25,14 +25,30 @@ module.exports = function(models) {
                     counter: 1
                 }, fn);
             }
-
         });
     }
 
+    //this function goes to the data base and find the greeted name value and the counter
+    //To show how many times the person has been greeted
+    var greetedTimes = function(req, res) {
+        var name = req.params.name;
+        models.greetedNames.findOne({name:name}, function(err, results) {
+            if (err) {
+                throw (err)
+            } else if (results) {
+              // console.log(results);
+                  res.render('timesGreeted', {
+                    name: results
+                })
+            }
+        })
+    }
+
+// counts all names that has been greeted and render the msg and the laterstcounter
     var counting = function(msg, res) {
         models.greetedNames.count({}, function(err, latestCounter) {
             if (err) {
-
+            console.log(err);
             } else {
                 res.render('greeting', {
                     languageGreet: msg,
@@ -71,36 +87,22 @@ module.exports = function(models) {
         var Language = req.body.Language;
         var name = req.body.name;
         var arr = [];
-        takeName(name, function(err, result) {
+        takesName(name, function(err, result) {
             if (err) {
                 return next(err)
             } else {
-                //return result;
-
                 // calling the compiler function, it renders the view
                 var msg = compileGreeting(name, Language);
                 counting(msg, res);
-
-                // , function(err, result) {
-                //     var msge = result.msg;
-                //     if (err) {
-                //         console.log(err);
-                //     } else {
-                //     }
-                // });
-
             }
         });
-
-
-
     };
+    //resets the names entered to greeted rout
     var resetFun = function(req, res) {
         models.greetedNames.remove({}, function(err, result) {
             if (err) {
                 throw (err)
             } else {
-                // res.redirect('/greeted')
                 return result
             }
         })
@@ -110,68 +112,20 @@ module.exports = function(models) {
         showForm,
         greetNames,
         allGreeted,
+        greetedTimes,
         resetFun
+
 
     };
 }
 
 
 
-//   if (Language === "English") {
-//                  languageGreet = 'Hello, ' + name;
-//              } else if (Language === "IsiXhosa") {
-//                  languageGreet = 'Molo, ' + name;
-//              } else if (Language === "Afrikaans") {
-//                  languageGreet = 'Halo, ' + name;
-//              }
-// }
 
 
 
 
-// // var counter = 1;
-// var counting = function(msg, res) {
-//   models.greetedNames.count({}, function(err, result) {
-//     if (err) {
-//       console.log(err);
-//     } else   {
-//       res.render('greeting', {
-//         languageGreet: msg,
-//         counter: result+=1
-//       });
-//     // } else {
-//     //   // res.render('greeting', {
-//     //   //   languageGreet: msg,
-//     //   //   counter: result+=1
-//     //   // });
-//     // }
-//   })
-// };
 
 
-
-
-// var Language = req.body.Language;
-// var languageGreet = "";
-// models.greetedNames.findOne({
-//         name: req.body.name
-//     }, function(err, results) {
-//         if (err) {
-//             return next(err);
-//         } else if (results) {
-//
-//             if (Language === "English") {
-//                 languageGreet = 'Hello, ' + name;
-//             } else if (Language === "IsiXhosa") {
-//                 languageGreet = 'Molo, ' + name;
-//             } else if (Language === "Afrikaans") {
-//                 languageGreet = 'Halo, ' + name;
-//             }
-//             res.render('greeting', {
-//                 name: languageGreet
-//             });
-//         }
-//
-//     console.log(languageGreet);
-//      console.log(name);
-// });
+// var namesGreeted = "Hi " + greetedPerson + "has been greeted " + greetedPerson.counter + "times" + "!"
+// res.render('timesGreeted',{})

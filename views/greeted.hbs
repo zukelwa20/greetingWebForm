@@ -1,91 +1,17 @@
 <head>
-  <link rel="stylesheet" href="/css/greeted.css">
+    <link rel="stylesheet" href="/css/greeted.css">
 </head>
 
- <h3>Greeted Names</h3>
+<h3>Greeted Names</h3>
 
+<ul>
+    {{#each greets}}
+        <li> <a href="/greeted/{{name}}">{{name}}</a>
+            <li>
 
- <ul>
- {{#each greets}}
-<li>   <a href="/greet/greeted">{{name}}</a><li>
- 
- {{/each}}
- </ul>
-
- <a href="/greet">Back to main page</a>
-
-
-
-<!-- <li>{{name}}<li> -->
+    {{/each}}
+</ul>
 
 
 
-
-
-
-
-
- <!-- <ul>
-   <li>{{name}}</li>
- </ul>
- <ul>
-   {{#each greets}}
-   <li>{{name}}</li>
-   {{/each}}
- </ul>  -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <a href="/greetings/greet">Greetings</a> -->
-
-
-
-
-
-
-
-
-<!-- {{#if messages.error}}
-<div class="error">
-{{messages.error}}
-<br>
-<br>
-</div>
-{{/if}}
-{{#if messages.success}}
-<div class="success">
-{{messages.success}}
-<br>
-<br>
-</div>
-{{/if}} -->
+<a href="/greet">Back to main page</a>

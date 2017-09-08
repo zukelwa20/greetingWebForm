@@ -1,5 +1,5 @@
 <head>
-  <link rel="stylesheet" href="/css/greeting.css">
+    <link rel="stylesheet" href="/css/greeting.css">
 </head>
 <form action="/greet" method="post">
     <input type="text" name="name" placeholder="Type any name here" value="" required=""></input>
@@ -12,7 +12,7 @@
     <input type="radio" name="Language" value="More, " required="">
     <label>Afrikaans</label><br><br>
 
-<a href="/greet/greeted">Greeted names</a>
+    <a href="/greeted">Greeted names</a>
 
     <h1>
       {{languageGreet}}
@@ -20,11 +20,11 @@
     <h2>{{counter}}</h2>
 
 
-<!-- /*i can do this to display names in a different page*/ -->
+
     <ul>
-    {{#greets}}
-    <li>{{this.name}}</li>
-    {{/greets}}
+        {{#greets}}
+            <li>{{this.name}}</li>
+        {{/greets}}
     </ul>
 
 </form>
