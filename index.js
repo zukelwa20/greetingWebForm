@@ -11,8 +11,8 @@ const models = model(process.env.MONGO_DB_URL || "mongodb://localhost/greeted");
 const nameRoutes = require('./greet');
 const nameRoute = nameRoutes(models);
 
-const resetFun = require('./greet');
-const resetName = resetFun(models);
+// const resetFun = require('./greet');
+// const resetName = resetFun(models);
 
 var app = express();
 
@@ -50,12 +50,12 @@ app.get('/', function(req, res) {
  // app.post('timesGreeted', nameRoute.greetedTimes)
 app.get('/greeted', nameRoute.allGreeted)
 app.get('/greet', nameRoute.showForm)
-app.get('/reset', resetName.resetFun)
+app.get('/reset', nameRoute.resetFun)
 app.post('/greet', nameRoute.greetNames)
 // app.get('/greet/greeted/name', nameRoute.counting)
 
 //start the server
-var server = app.listen(process.env.PORT || 5000, function() {
+var server = app.listen(process.env.PORT || 3000, function() {
 
     var host = server.address().address;
     var port = server.address().port;
