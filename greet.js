@@ -36,7 +36,7 @@ module.exports = function(models) {
             if (err) {
                 throw (err)
             } else if (results) {
-              // console.log(results);
+              console.log(results);
                   res.render('timesGreeted', {
                     name: results
                 })
@@ -101,7 +101,7 @@ module.exports = function(models) {
     var resetFun = function(req, res) {
         models.greetedNames.remove({}, function(err, result) {
             if (err) {
-                throw (err)
+          // throw (err)
             } else {
                 return result
             }
@@ -118,14 +118,3 @@ module.exports = function(models) {
 
     };
 }
-
-
-
-
-
-
-
-
-
-// var namesGreeted = "Hi " + greetedPerson + "has been greeted " + greetedPerson.counter + "times" + "!"
-// res.render('timesGreeted',{})
