@@ -6,7 +6,7 @@ const flash = require('express-flash');
 
 
 const model = require("./models");
-const models = model("mongodb://localhost/greeted");
+const models = model(process.env.MONGO_DB_URL || "mongodb://localhost/greeted");
 
 const nameRoutes = require('./greet');
 const nameRoute = nameRoutes(models);
