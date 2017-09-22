@@ -86,7 +86,7 @@ module.exports = function(models) {
     const greetNames = function(req, res, next) {
         var Language = req.body.Language;
         var name = req.body.name;
-        var arr = [];
+        // var arr = [];
         takesName(name, function(err, result) {
             if (err) {
                 return next(err)
